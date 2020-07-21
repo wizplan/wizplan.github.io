@@ -1,0 +1,46 @@
+{% if site.duoshuo_shortname %}
+<!-- 댓글 상자 start -->
+<div class="ds-thread" data-thread-key="{{ site.url }}{{ page.url }}" data-title="{{page.title}}" data-url="{{ site.url }}{{ page.url }}"></div>
+<!-- 댓글 상자 end -->
+<!-- 공개 JS 코드 start (웹 페이지를 한 번만 삽입) -->
+<script type="text/javascript">
+    var duoshuoQuery = {
+        short_name: "{{site.duoshuo_shortname}}"
+    };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 공개 JS 코드 end -->
+{% endif %}
+
+{% if site.disqus_shortname %}
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * 권장 구성 변수: 플랫폼 또는 CMS에서 동적 값을 삽입하기 위해 아래 섹션을 편집하고 주석을 제거하십시오.
+     * 이 변수 정의가 중요한 이유 알아보기: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = '{{ site.url }}{{ page.url }}'; // PAGE_URL을 페이지의 정식 URL로 교체
+        this.page.identifier = '{{ site.url }}{{ page.url }}'; // PAGE_IDENTIFIER을 를) 페이지의 고유한 것으로 교체
+    };
+
+    (function() { // 이 줄 아래는 편집하지 마세요
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//{{site.disqus_shortname}}.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+{% endif %}
